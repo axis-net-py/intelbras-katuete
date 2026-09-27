@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import { 
   Search, 
@@ -18,11 +18,11 @@ import {
   Radio, 
   Tv, 
   CheckCircle2, 
-  MessageCircle,
-  HelpCircle,
-  Clock,
-  ArrowRight,
-  CreditCard
+  MessageCircle, 
+  HelpCircle, 
+  Clock, 
+  CreditCard,
+  Grid
 } from 'lucide-react';
 import { PRODUCTS, CATEGORIES, EXCHANGE_RATES } from './data/products';
 import './App.css';
@@ -38,6 +38,8 @@ export default function App() {
   const [sortBy, setSortBy] = useState('featured');
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const searchInputRef = useRef(null);
+
   const [cart, setCart] = useState(() => {
     try {
       const saved = localStorage.getItem('intelbras_cart');
@@ -61,6 +63,14 @@ export default function App() {
       console.error(e);
     }
   }, [cart]);
+
+  // Focus search helper
+  const handleFocusSearch = () => {
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+      searchInputRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
 
   // Format price helper with accurate Salto del Guairá exchange rates
   const formatPrice = (p, curr = currency) => {
@@ -91,17 +101,17 @@ export default function App() {
   const getCategoryIcon = (category) => {
     switch (category) {
       case 'Redes y Fibra Óptica':
-        return <Wifi size={24} />;
+        return <Wifi size={20} />;
       case 'Seguridad e Intercom':
-        return <Lock size={24} />;
+        return <Lock size={20} />;
       case 'Casa Inteligente (Smart Home)':
-        return <Home size={24} />;
+        return <Home size={20} />;
       case 'Iluminación y Sensores':
-        return <Radio size={24} />;
+        return <Radio size={20} />;
       case 'Audio, Video y Accesorios':
-        return <Tv size={24} />;
+        return <Tv size={20} />;
       default:
-        return <Layers size={24} />;
+        return <Layers size={20} />;
     }
   };
 
@@ -243,18 +253,17 @@ export default function App() {
 
   return (
     <div className="app-root">
-      {/* 1. Top Bar */}
+      {/* 1. Mobile-First Top Bar */}
       <div className="top-bar">
         <div className="top-bar-container">
           <div className="top-bar-location">
-            <MapPin size={15} style={{ color: '#34d399' }} />
-            <span>Depósito Físico en <span className="highlight">Katueté, Canindeyú</span> (a 45 km de Salto del Guairá)</span>
-            <div className="top-bar-rates-badge">
-              Cotización Salto del Guairá: 1 US$ = ₲ {EXCHANGE_RATES.USD_TO_PYG.toLocaleString('es-PY')} | 1 R$ = ₲ {EXCHANGE_RATES.BRL_TO_PYG.toLocaleString('es-PY')}
-            </div>
+            <MapPin size={13} style={{ color: '#34d399', flexShrink: 0 }} />
+            <span>Depósito en <span className="highlight">Katueté</span> (a 45 km de Salto del Guairá)</span>
           </div>
           <div className="top-bar-controls">
-            <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Moneda:</span>
+            <div className="top-bar-rates-badge">
+              1 US$=₲ {EXCHANGE_RATES.USD_TO_PYG.toLocaleString('es-PY')} • 1 R$=₲ {EXCHANGE_RATES.BRL_TO_PYG.toLocaleString('es-PY')}
+            </div>
             <div className="currency-toggle">
               <button 
                 className={`currency-btn ${currency === 'PYG' ? 'active' : ''}`}
@@ -266,23 +275,15 @@ export default function App() {
                 className={`currency-btn ${currency === 'USD' ? 'active' : ''}`}
                 onClick={() => setCurrency('USD')}
               >
-                US$ Dólar
+                US$
               </button>
               <button 
                 className={`currency-btn ${currency === 'BRL' ? 'active' : ''}`}
                 onClick={() => setCurrency('BRL')}
               >
-                R$ Real
+                R$
               </button>
             </div>
-            <a 
-              href={`https://wa.me/${WHATSAPP_CONTACT_NUMBER}`}
-              target="_blank"
-              rel="noreferrer"
-              style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: '#34d399', fontWeight: 600 }}
-            >
-              <MessageCircle size={14} /> WhatsApp Directo
-            </a>
           </div>
         </div>
       </div>
@@ -290,21 +291,34 @@ export default function App() {
       {/* 2. Main Sticky Header */}
       <header className="main-header">
         <div className="header-container">
-          <a href="#" className="brand-wrapper">
-            <div className="brand-badge">i</div>
-            <div className="brand-text">
-              <h1>INTELBRAS</h1>
-              <span>Katueté • Distribución & Stock Inmediato</span>
+          <div className="header-top-row">
+            <a href="#" className="brand-wrapper">
+              <div className="brand-badge">i</div>
+              <div className="brand-text">
+                <h1>INTELBRAS</h1>
+                <span>Katueté • Distribución Directa</span>
+              </div>
+            </a>
+
+            <div className="header-actions">
+              <button className="cart-button" onClick={() => setIsCartOpen(true)}>
+                <ShoppingCart size={16} />
+                <span>Pedido</span>
+                {cartTotalItems > 0 && (
+                  <span className="cart-counter">{cartTotalItems}</span>
+                )}
+              </button>
             </div>
-          </a>
+          </div>
 
           {/* Search bar */}
           <div className="header-search">
             <div className="search-input-wrapper">
-              <Search size={18} className="search-icon" />
+              <Search size={16} className="search-icon" />
               <input 
+                ref={searchInputRef}
                 type="text"
-                placeholder="Buscar por equipo, modelo, SKU o código de barras..."
+                placeholder="Buscar equipo, modelo o código..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="search-input"
@@ -316,71 +330,60 @@ export default function App() {
               )}
             </div>
           </div>
-
-          {/* Cart Trigger */}
-          <div className="header-actions">
-            <button className="cart-button" onClick={() => setIsCartOpen(true)}>
-              <ShoppingCart size={18} />
-              <span>Pedido</span>
-              {cartTotalItems > 0 && (
-                <span className="cart-counter">{cartTotalItems}</span>
-              )}
-            </button>
-          </div>
         </div>
       </header>
 
-      {/* 3. Hero Section */}
+      {/* 3. Hero Section (Compact & Mobile-Optimized) */}
       <section className="hero-section">
         <div className="hero-container">
           <div className="hero-tag">
-            <Sparkles size={14} /> Stock Disponible en Depósito
+            <Sparkles size={13} /> Stock en Katueté
           </div>
           <h2 className="hero-title">
-            Equipamiento Profesional <span className="gradient-text">Intelbras</span> en Katueté
+            Equipamiento <span className="gradient-text">Intelbras</span> con Stock Inmediato
           </h2>
           <p className="hero-subtitle">
-            Disponibilidad física inmediata de equipos de redes, telecomunicaciones, videoseguridad, interfonía y domótica. Retiro en nuestro depósito de Katueté o envíos rápidos a Salto del Guairá y todo el país.
+            Redes, videoseguridad, interfonía y automatización. Retiro en depósito o envíos diarios a Salto del Guairá y todo el país.
           </p>
 
           <div className="hero-badges-grid">
             <div className="hero-feature-card">
               <div className="feature-icon-box">
-                <Truck size={22} />
+                <Truck size={16} />
               </div>
               <div className="feature-info">
-                <h4>Entrega Local y Regional</h4>
-                <p>Katueté, Salto del Guairá, Puente Kyjhá, La Paloma y CDE.</p>
+                <h4>Envíos Diarios</h4>
+                <p>Katueté, Salto del Guairá y CDE</p>
               </div>
             </div>
 
             <div className="hero-feature-card">
               <div className="feature-icon-box">
-                <CreditCard size={22} />
+                <CreditCard size={16} />
               </div>
               <div className="feature-info">
-                <h4>Múltiples Formas de Pago</h4>
-                <p>Efectivo en Guaraníes, Dólares, Reales, SIPAP bancario o Pix.</p>
+                <h4>Formas de Pago</h4>
+                <p>Gs, USD, Reales, SIPAP o Pix</p>
               </div>
             </div>
 
             <div className="hero-feature-card">
               <div className="feature-icon-box">
-                <ShieldCheck size={22} />
+                <ShieldCheck size={16} />
               </div>
               <div className="feature-info">
                 <h4>Garantía Oficial</h4>
-                <p>Equipos originales, nuevos en caja sellada con respaldo de fábrica.</p>
+                <p>Nuevos en caja sellada</p>
               </div>
             </div>
 
             <div className="hero-feature-card">
               <div className="feature-icon-box">
-                <MessageCircle size={22} />
+                <MessageCircle size={16} />
               </div>
               <div className="feature-info">
-                <h4>Atención Personalizada</h4>
-                <p>Coordinación inmediata de pedidos y presupuestos en WhatsApp.</p>
+                <h4>WhatsApp</h4>
+                <p>Atención al instante</p>
               </div>
             </div>
           </div>
@@ -390,7 +393,7 @@ export default function App() {
       {/* 4. Catalog & Explorer */}
       <main className="catalog-section">
         <div className="catalog-header-card">
-          {/* Category Tabs */}
+          {/* Horizontal Snap Category Pill Bar */}
           <div className="category-scroll-container">
             {CATEGORIES.map((cat) => {
               const count = cat === 'Todos' 
@@ -413,7 +416,7 @@ export default function App() {
           <div className="controls-row">
             <div className="controls-left">
               <div className="results-count">
-                Mostrando <strong>{filteredProducts.length}</strong> de <strong>{PRODUCTS.length}</strong> artículos
+                <strong>{filteredProducts.length}</strong> artículos
               </div>
 
               <label className="stock-toggle-label">
@@ -423,12 +426,11 @@ export default function App() {
                   onChange={(e) => setOnlyInStock(e.target.checked)}
                   className="stock-toggle-input"
                 />
-                Solo con stock disponible
+                Solo con stock
               </label>
             </div>
 
             <div className="controls-right">
-              <label htmlFor="sort-select" style={{ fontSize: '0.8125rem', color: '#64748b' }}>Ordenar:</label>
               <select 
                 id="sort-select"
                 value={sortBy}
@@ -436,20 +438,20 @@ export default function App() {
                 className="sort-select"
               >
                 <option value="featured">Destacados</option>
-                <option value="price_asc">Menor precio primero</option>
-                <option value="price_desc">Mayor precio primero</option>
-                <option value="stock_desc">Mayor stock en depósito</option>
+                <option value="price_asc">Menor precio</option>
+                <option value="price_desc">Mayor precio</option>
+                <option value="stock_desc">Mayor stock disponible</option>
               </select>
             </div>
           </div>
         </div>
 
-        {/* Product Grid */}
+        {/* 2-Column Mobile Product Grid */}
         {filteredProducts.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '4rem 1rem', background: '#fff', borderRadius: '1rem' }}>
-            <HelpCircle size={48} style={{ color: '#94a3b8', margin: '0 auto 1rem' }} />
-            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem' }}>No se encontraron productos</h3>
-            <p style={{ color: '#64748b', marginBottom: '1.5rem' }}>Intenta ajustar los filtros de búsqueda o categoría.</p>
+          <div style={{ textAlign: 'center', padding: '3rem 1rem', background: '#fff', borderRadius: '1rem' }}>
+            <HelpCircle size={40} style={{ color: '#94a3b8', margin: '0 auto 0.75rem' }} />
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.25rem' }}>No se encontraron productos</h3>
+            <p style={{ color: '#64748b', fontSize: '0.8125rem', marginBottom: '1.25rem' }}>Prueba con otro término de búsqueda.</p>
             <button 
               onClick={() => { setSelectedCategory('Todos'); setSearchQuery(''); setOnlyInStock(false); }}
               className="category-pill active"
@@ -486,7 +488,7 @@ export default function App() {
                     {/* Real stock counter */}
                     <div className={`stock-tag ${inStock ? (p.stock < 3 ? 'low-stock' : 'in-stock') : 'out-stock'}`}>
                       <span className="stock-dot"></span>
-                      <span>{inStock ? `${p.stock} en depósito` : 'Agotado'}</span>
+                      <span>{inStock ? `${p.stock} un.` : 'Agotado'}</span>
                     </div>
                   </div>
 
@@ -501,9 +503,9 @@ export default function App() {
                     >
                       {p.name}
                     </h3>
-                    <div className="product-sku">SKU: {p.sku} • EAN: {p.barcode}</div>
+                    <div className="product-sku">SKU: {p.sku}</div>
 
-                    {/* Bullet Specs */}
+                    {/* Tablet/Desktop Specs list */}
                     <ul className="product-specs-list">
                       {(p.specs || []).slice(0, 2).map((spec, i) => (
                         <li key={i}>{spec}</li>
@@ -536,7 +538,7 @@ export default function App() {
                         onClick={() => addToCart(p, 1)}
                         disabled={!inStock}
                       >
-                        <ShoppingCart size={15} />
+                        <ShoppingCart size={14} />
                         {inStock ? 'Al Carrito' : 'Agotado'}
                       </button>
 
@@ -545,7 +547,7 @@ export default function App() {
                         onClick={() => orderSingleViaWhatsApp(p)}
                         title="Pedir directamente por WhatsApp"
                       >
-                        <MessageCircle size={15} />
+                        <MessageCircle size={14} />
                         WhatsApp
                       </button>
                     </div>
@@ -557,10 +559,59 @@ export default function App() {
         )}
       </main>
 
-      {/* 5. Product Detail Modal */}
+      {/* 5. Mobile Quick Cart Sticky Floating Bar (when cart has items) */}
+      {cartTotalItems > 0 && !isCartOpen && (
+        <div className="mobile-quick-cart-bar" onClick={() => setIsCartOpen(true)}>
+          <div className="quick-cart-info">
+            <span className="quick-cart-badge">{cartTotalItems}</span>
+            <span>Ver Pedido</span>
+          </div>
+          <div className="quick-cart-total">
+            ₲ {cartTotals.pyg.toLocaleString('es-PY')}
+          </div>
+        </div>
+      )}
+
+      {/* 6. Mobile Bottom App Navigation */}
+      <nav className="mobile-bottom-nav">
+        <button 
+          className={`bottom-nav-item ${selectedCategory === 'Todos' && !searchQuery ? 'active' : ''}`}
+          onClick={() => { setSelectedCategory('Todos'); setSearchQuery(''); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+        >
+          <Grid size={18} />
+          <span>Catálogo</span>
+        </button>
+
+        <button className="bottom-nav-item" onClick={handleFocusSearch}>
+          <Search size={18} />
+          <span>Buscar</span>
+        </button>
+
+        <a 
+          href={`https://wa.me/${WHATSAPP_CONTACT_NUMBER}?text=${encodeURIComponent('¡Hola! Quisiera hacer una consulta sobre los equipos Intelbras en Katueté.')}`}
+          target="_blank"
+          rel="noreferrer"
+          className="bottom-nav-item"
+          style={{ color: '#25d366' }}
+        >
+          <MessageCircle size={18} />
+          <span>WhatsApp</span>
+        </a>
+
+        <button className="bottom-nav-item" onClick={() => setIsCartOpen(true)}>
+          <ShoppingCart size={18} />
+          <span>Pedido</span>
+          {cartTotalItems > 0 && (
+            <span className="bottom-nav-badge">{cartTotalItems}</span>
+          )}
+        </button>
+      </nav>
+
+      {/* 7. Product Detail Bottom Sheet / Modal */}
       {selectedProduct && (
         <div className="modal-overlay" onClick={() => setSelectedProduct(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="bottom-sheet-handle"></div>
             <div className="modal-header-visual">
               <button className="modal-close-btn" onClick={() => setSelectedProduct(null)}>
                 <X size={18} />
@@ -577,72 +628,70 @@ export default function App() {
             </div>
 
             <div className="modal-body">
-              <span style={{ fontSize: '0.8125rem', color: '#009845', fontWeight: 700, textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '0.75rem', color: '#009845', fontWeight: 700, textTransform: 'uppercase' }}>
                 {selectedProduct.category}
               </span>
-              <h3 style={{ fontSize: '1.35rem', fontWeight: 800, marginTop: '0.25rem', marginBottom: '1rem', color: '#0f172a' }}>
+              <h3 style={{ fontSize: '1.15rem', fontWeight: 800, marginTop: '0.2rem', marginBottom: '0.875rem', color: '#0f172a' }}>
                 {selectedProduct.name}
               </h3>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', background: '#f8fafc', padding: '0.75rem 1rem', borderRadius: '8px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', background: '#f8fafc', padding: '0.625rem 0.75rem', borderRadius: '8px' }}>
                 <div>
-                  <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>CÓDIGO SKU</span>
-                  <div style={{ fontFamily: 'monospace', fontWeight: 700, color: '#0f172a' }}>{selectedProduct.sku}</div>
+                  <span style={{ fontSize: '0.6875rem', color: '#94a3b8' }}>SKU</span>
+                  <div style={{ fontFamily: 'monospace', fontWeight: 700, fontSize: '0.8125rem' }}>{selectedProduct.sku}</div>
                 </div>
                 <div>
-                  <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>CÓDIGO DE BARRAS</span>
-                  <div style={{ fontFamily: 'monospace', fontWeight: 700, color: '#0f172a' }}>{selectedProduct.barcode}</div>
+                  <span style={{ fontSize: '0.6875rem', color: '#94a3b8' }}>EAN BARRAS</span>
+                  <div style={{ fontFamily: 'monospace', fontWeight: 700, fontSize: '0.8125rem' }}>{selectedProduct.barcode}</div>
                 </div>
                 <div>
-                  <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>DISPONIBILIDAD</span>
-                  <div style={{ fontWeight: 700, color: selectedProduct.stock > 0 ? '#10b981' : '#ef4444' }}>
-                    {selectedProduct.stock > 0 ? `${selectedProduct.stock} unidades en depósito` : 'Sin stock'}
+                  <span style={{ fontSize: '0.6875rem', color: '#94a3b8' }}>STOCK</span>
+                  <div style={{ fontWeight: 700, fontSize: '0.8125rem', color: selectedProduct.stock > 0 ? '#10b981' : '#ef4444' }}>
+                    {selectedProduct.stock > 0 ? `${selectedProduct.stock} un.` : 'Agotado'}
                   </div>
                 </div>
               </div>
 
-              <div style={{ marginBottom: '1.5rem' }}>
-                <h4 style={{ fontSize: '0.875rem', fontWeight: 700, marginBottom: '0.5rem', color: '#334155' }}>Especificaciones y Garantía:</h4>
+              <div style={{ marginBottom: '1.25rem' }}>
+                <h4 style={{ fontSize: '0.8125rem', fontWeight: 700, marginBottom: '0.35rem', color: '#334155' }}>Características:</h4>
                 <ul style={{ listStyle: 'none' }}>
                   {(selectedProduct.specs || []).map((s, idx) => (
-                    <li key={idx} style={{ fontSize: '0.875rem', color: '#475569', marginBottom: '0.35rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <CheckCircle2 size={15} color="#009845" /> {s}
+                    <li key={idx} style={{ fontSize: '0.8125rem', color: '#475569', marginBottom: '0.25rem', display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+                      <CheckCircle2 size={14} color="#009845" style={{ flexShrink: 0 }} /> {s}
                     </li>
                   ))}
-                  <li style={{ fontSize: '0.875rem', color: '#475569', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                    <CheckCircle2 size={15} color="#009845" /> Garantía oficial Intelbras con soporte local en Canindeyú
+                  <li style={{ fontSize: '0.8125rem', color: '#475569', display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+                    <CheckCircle2 size={14} color="#009845" style={{ flexShrink: 0 }} /> Garantía oficial Intelbras con soporte local
                   </li>
                 </ul>
               </div>
 
               {/* Price block */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', padding: '1rem', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '10px' }}>
-                <div>
-                  <span style={{ fontSize: '0.75rem', color: '#166534', fontWeight: 700 }}>PRECIO:</span>
-                  <div style={{ fontSize: '1.75rem', fontWeight: 900, color: '#14532d' }}>
-                    {formatPrice(selectedProduct)}
-                  </div>
-                  <div style={{ fontSize: '0.8125rem', color: '#16a34a' }}>
-                    Cotización: ₲ {selectedProduct.price_pyg.toLocaleString('es-PY')} • US$ {(selectedProduct.price_pyg / EXCHANGE_RATES.USD_TO_PYG).toFixed(2)} • R$ {(selectedProduct.price_pyg / EXCHANGE_RATES.BRL_TO_PYG).toFixed(2)}
-                  </div>
+              <div style={{ marginBottom: '1.25rem', padding: '0.875rem', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '10px' }}>
+                <span style={{ fontSize: '0.6875rem', color: '#166534', fontWeight: 700 }}>PRECIO:</span>
+                <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#14532d', lineHeight: 1.1 }}>
+                  {formatPrice(selectedProduct)}
+                </div>
+                <div style={{ fontSize: '0.75rem', color: '#16a34a', marginTop: '0.25rem' }}>
+                  ₲ {selectedProduct.price_pyg.toLocaleString('es-PY')} • US$ {(selectedProduct.price_pyg / EXCHANGE_RATES.USD_TO_PYG).toFixed(2)} • R$ {(selectedProduct.price_pyg / EXCHANGE_RATES.BRL_TO_PYG).toFixed(2)}
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
                 <button
                   className="btn-card-cart"
-                  style={{ padding: '0.875rem', fontSize: '0.9375rem' }}
+                  style={{ padding: '0.75rem', fontSize: '0.875rem', minHeight: '44px' }}
                   onClick={() => { addToCart(selectedProduct, 1); setSelectedProduct(null); setIsCartOpen(true); }}
                   disabled={selectedProduct.stock <= 0}
                 >
-                  <ShoppingCart size={18} /> Añadir al Pedido
+                  <ShoppingCart size={16} /> Añadir al Pedido
                 </button>
                 <button
                   className="btn-card-whatsapp"
-                  style={{ padding: '0.875rem', fontSize: '0.9375rem' }}
+                  style={{ padding: '0.75rem', fontSize: '0.875rem', minHeight: '44px' }}
                   onClick={() => orderSingleViaWhatsApp(selectedProduct)}
                 >
-                  <MessageCircle size={18} /> Pedir por WhatsApp
+                  <MessageCircle size={16} /> WhatsApp
                 </button>
               </div>
             </div>
@@ -650,25 +699,26 @@ export default function App() {
         </div>
       )}
 
-      {/* 6. Shopping Cart & Checkout Drawer */}
+      {/* 8. Shopping Cart Bottom Sheet / Drawer */}
       {isCartOpen && (
         <div className="cart-drawer-overlay" onClick={() => setIsCartOpen(false)}>
           <div className="cart-drawer" onClick={(e) => e.stopPropagation()}>
+            <div className="bottom-sheet-handle"></div>
             <div className="cart-drawer-header">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <ShoppingCart size={20} color="#009845" />
-                <h3>Pedido de Compra ({cartTotalItems})</h3>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <ShoppingCart size={18} color="#009845" />
+                <h3>Pedido ({cartTotalItems})</h3>
               </div>
               <button className="close-btn" onClick={() => setIsCartOpen(false)}>
-                <X size={20} />
+                <X size={18} />
               </button>
             </div>
 
             {cart.length === 0 ? (
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', textAlign: 'center' }}>
-                <ShoppingCart size={48} style={{ color: '#cbd5e1', marginBottom: '1rem' }} />
-                <h4 style={{ fontWeight: 700, color: '#334155', marginBottom: '0.25rem' }}>El carrito está vacío</h4>
-                <p style={{ fontSize: '0.875rem', color: '#94a3b8', marginBottom: '1.5rem' }}>Explora el catálogo y añade artículos para enviar tu pedido.</p>
+                <ShoppingCart size={40} style={{ color: '#cbd5e1', marginBottom: '0.75rem' }} />
+                <h4 style={{ fontWeight: 700, color: '#334155', marginBottom: '0.2rem' }}>El carrito está vacío</h4>
+                <p style={{ fontSize: '0.8125rem', color: '#94a3b8', marginBottom: '1.25rem' }}>Explora el catálogo y añade artículos para enviar tu pedido.</p>
                 <button className="category-pill active" onClick={() => setIsCartOpen(false)}>
                   Explorar Catálogo
                 </button>
@@ -760,25 +810,25 @@ export default function App() {
                   {/* Totals Summary */}
                   <div className="cart-totals-summary">
                     <div className="totals-line">
-                      <span style={{ color: '#64748b', fontSize: '0.875rem' }}>Subtotal en Guaraníes:</span>
+                      <span style={{ color: '#64748b' }}>Subtotal en Guaraníes:</span>
                       <strong style={{ color: '#0f172a' }}>₲ {cartTotals.pyg.toLocaleString('es-PY')}</strong>
                     </div>
                     <div className="totals-line">
-                      <span style={{ color: '#64748b', fontSize: '0.875rem' }}>Subtotal en Dólares (US$):</span>
+                      <span style={{ color: '#64748b' }}>Subtotal en Dólares (US$):</span>
                       <strong style={{ color: '#0284c7' }}>US$ {cartTotals.usd}</strong>
                     </div>
                     <div className="totals-line">
-                      <span style={{ color: '#64748b', fontSize: '0.875rem' }}>Subtotal en Reales (R$):</span>
+                      <span style={{ color: '#64748b' }}>Subtotal en Reales (R$):</span>
                       <strong style={{ color: '#16a34a' }}>R$ {cartTotals.brl}</strong>
                     </div>
                   </div>
 
                   <button className="btn-checkout-whatsapp" onClick={handleWhatsAppCheckout}>
-                    <MessageCircle size={20} />
+                    <MessageCircle size={18} />
                     Enviar Pedido por WhatsApp
                   </button>
-                  <p style={{ fontSize: '0.75rem', color: '#94a3b8', textAlign: 'center', marginTop: '0.5rem' }}>
-                    Al hacer clic, se abrirá WhatsApp con los detalles de tu pedido listo para enviar.
+                  <p style={{ fontSize: '0.6875rem', color: '#94a3b8', textAlign: 'center', marginTop: '0.4rem' }}>
+                    Al hacer clic, se abrirá WhatsApp con los detalles de tu pedido listos para enviar.
                   </p>
                 </div>
               </>
@@ -787,7 +837,7 @@ export default function App() {
         </div>
       )}
 
-      {/* 7. Floating WhatsApp Button */}
+      {/* 9. Floating WhatsApp Button (Desktop Only) */}
       <a 
         href={`https://wa.me/${WHATSAPP_CONTACT_NUMBER}?text=${encodeURIComponent('¡Hola! Me gustaría hacer una consulta sobre los productos Intelbras disponibles en Katueté.')}`}
         target="_blank"
@@ -798,7 +848,7 @@ export default function App() {
         <MessageCircle size={28} />
       </a>
 
-      {/* 8. Footer */}
+      {/* 10. Footer */}
       <footer className="main-footer">
         <div className="footer-container">
           <div className="footer-col">
@@ -806,15 +856,15 @@ export default function App() {
             <p>
               Distribución y venta directa de equipamiento de telecomunicaciones, redes, videovigilancia y automatización para el departamento de Canindeyú y zona fronteriza.
             </p>
-            <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem', alignItems: 'center', color: '#34d399', fontSize: '0.875rem' }}>
-              <Clock size={16} /> Atención de Lunes a Sábado de 07:30 a 17:30 hs
+            <div style={{ marginTop: '0.75rem', display: 'flex', gap: '0.4rem', alignItems: 'center', color: '#34d399', fontSize: '0.8125rem' }}>
+              <Clock size={15} /> Lunes a Sábado de 07:30 a 17:30 hs
             </div>
           </div>
 
           <div className="footer-col">
             <h4>Ubicación & Envíos</h4>
-            <p>📍 Katueté, Departamento de Canindeyú, Paraguay.</p>
-            <p style={{ marginTop: '0.5rem' }}>
+            <p>📍 Katueté, Canindeyú, Paraguay.</p>
+            <p style={{ marginTop: '0.4rem' }}>
               Envíos diarios a Salto del Guairá, La Paloma, Puente Kyjhá, Corpus Christi y todo Paraguay a través de empresas transportadoras reconocidas.
             </p>
           </div>
