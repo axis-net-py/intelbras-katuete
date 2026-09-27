@@ -10,8 +10,6 @@ import {
   MapPin, 
   Truck, 
   ShieldCheck, 
-  PhoneCall, 
-  Tag, 
   Sparkles, 
   Layers, 
   Wifi, 
@@ -23,9 +21,10 @@ import {
   MessageCircle,
   HelpCircle,
   Clock,
-  ArrowRight
+  ArrowRight,
+  CreditCard
 } from 'lucide-react';
-import { PRODUCTS, CATEGORIES } from './data/products';
+import { PRODUCTS, CATEGORIES, EXCHANGE_RATES } from './data/products';
 import './App.css';
 
 // WhatsApp Contact Number for Katueté / Canindeyú
@@ -63,16 +62,29 @@ export default function App() {
     }
   }, [cart]);
 
-  // Format price helper
+  // Format price helper with accurate Salto del Guairá exchange rates
   const formatPrice = (p, curr = currency) => {
     if (curr === 'PYG') {
       return `₲ ${p.price_pyg.toLocaleString('es-PY')}`;
     } else if (curr === 'USD') {
-      return `US$ ${p.price_usd}`;
+      const usd = (p.price_pyg / EXCHANGE_RATES.USD_TO_PYG).toFixed(2);
+      return `US$ ${usd}`;
     } else if (curr === 'BRL') {
-      return `R$ ${p.price_brl}`;
+      const brl = (p.price_pyg / EXCHANGE_RATES.BRL_TO_PYG).toFixed(2);
+      return `R$ ${brl}`;
     }
-    return `₲ ${p.price_pyg}`;
+    return `₲ ${p.price_pyg.toLocaleString('es-PY')}`;
+  };
+
+  // Secondary price helper
+  const getSecondaryPrices = (p) => {
+    const usd = (p.price_pyg / EXCHANGE_RATES.USD_TO_PYG).toFixed(2);
+    const brl = (p.price_pyg / EXCHANGE_RATES.BRL_TO_PYG).toFixed(2);
+    return {
+      pyg: `₲ ${p.price_pyg.toLocaleString('es-PY')}`,
+      usd: `US$ ${usd}`,
+      brl: `R$ ${brl}`
+    };
   };
 
   // Category Icon helper
@@ -173,17 +185,18 @@ export default function App() {
 
   const cartTotals = useMemo(() => {
     const totalPyg = cart.reduce((sum, item) => sum + item.product.price_pyg * item.quantity, 0);
-    const totalUsd = cart.reduce((sum, item) => sum + item.product.price_usd * item.quantity, 0);
-    const totalBrl = cart.reduce((sum, item) => sum + item.product.price_brl * item.quantity, 0);
+    const totalUsd = (totalPyg / EXCHANGE_RATES.USD_TO_PYG).toFixed(2);
+    const totalBrl = (totalPyg / EXCHANGE_RATES.BRL_TO_PYG).toFixed(2);
     return { pyg: totalPyg, usd: totalUsd, brl: totalBrl };
   }, [cart]);
 
   // Direct 1-Click WhatsApp Order for single item
   const orderSingleViaWhatsApp = (product) => {
+    const secondary = getSecondaryPrices(product);
     const msg = `¡Hola! Me interesa este equipo Intelbras disponible en Katueté:\n\n` +
       `📦 *${product.name}*\n` +
       `🔖 SKU: ${product.sku} | Código: ${product.barcode}\n` +
-      `💰 Precio: ₲ ${product.price_pyg.toLocaleString('es-PY')} (US$ ${product.price_usd} / R$ ${product.price_brl})\n` +
+      `💰 Precio: ${secondary.pyg} (US$ ${secondary.usd.replace('US$ ', '')} / R$ ${secondary.brl.replace('R$ ', '')})\n` +
       `📊 Stock disponible: ${product.stock} unidades\n\n` +
       `¿Podrían confirmarme disponibilidad para retirar o coordinar envío a Katueté / Salto del Guairá?`;
     
@@ -234,8 +247,11 @@ export default function App() {
       <div className="top-bar">
         <div className="top-bar-container">
           <div className="top-bar-location">
-            <MapPin size={15} className="text-emerald-400" />
+            <MapPin size={15} style={{ color: '#34d399' }} />
             <span>Depósito Físico en <span className="highlight">Katueté, Canindeyú</span> (a 45 km de Salto del Guairá)</span>
+            <div className="top-bar-rates-badge">
+              Cotización Salto del Guairá: 1 US$ = ₲ {EXCHANGE_RATES.USD_TO_PYG.toLocaleString('es-PY')} | 1 R$ = ₲ {EXCHANGE_RATES.BRL_TO_PYG.toLocaleString('es-PY')}
+            </div>
           </div>
           <div className="top-bar-controls">
             <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Moneda:</span>
@@ -278,7 +294,7 @@ export default function App() {
             <div className="brand-badge">i</div>
             <div className="brand-text">
               <h1>INTELBRAS</h1>
-              <span>Katueté • Liquidación & Stock Inmediato</span>
+              <span>Katueté • Distribución & Stock Inmediato</span>
             </div>
           </a>
 
@@ -318,14 +334,13 @@ export default function App() {
       <section className="hero-section">
         <div className="hero-container">
           <div className="hero-tag">
-            <Sparkles size={14} /> Stock Físico Listo Para Retiro o Envío
+            <Sparkles size={14} /> Stock Disponible en Depósito
           </div>
           <h2 className="hero-title">
-            Equipamiento <span className="gradient-text">Intelbras</span> con Margen de Liquidación Rápida
+            Equipamiento Profesional <span className="gradient-text">Intelbras</span> en Katueté
           </h2>
           <p className="hero-subtitle">
-            Precios directos de costo + markup accesible redondeados en múltiplos de 5 para salida express.
-            Redes, Fibra Óptica, Cámaras, Videoporteros, Smart Home e Interfonía en Katueté y zona Salto del Guairá.
+            Disponibilidad física inmediata de equipos de redes, telecomunicaciones, videoseguridad, interfonía y domótica. Retiro en nuestro depósito de Katueté o envíos rápidos a Salto del Guairá y todo el país.
           </p>
 
           <div className="hero-badges-grid">
@@ -334,18 +349,18 @@ export default function App() {
                 <Truck size={22} />
               </div>
               <div className="feature-info">
-                <h4>Entrega Local & Frontera</h4>
+                <h4>Entrega Local y Regional</h4>
                 <p>Katueté, Salto del Guairá, Puente Kyjhá, La Paloma y CDE.</p>
               </div>
             </div>
 
             <div className="hero-feature-card">
               <div className="feature-icon-box">
-                <Tag size={22} />
+                <CreditCard size={22} />
               </div>
               <div className="feature-info">
-                <h4>Precios Redondos</h4>
-                <p>Valores en múltiplos de 5 exactos en ₲ Guaraníes, US$ y R$.</p>
+                <h4>Múltiples Formas de Pago</h4>
+                <p>Efectivo en Guaraníes, Dólares, Reales, SIPAP bancario o Pix.</p>
               </div>
             </div>
 
@@ -354,8 +369,8 @@ export default function App() {
                 <ShieldCheck size={22} />
               </div>
               <div className="feature-info">
-                <h4>Garantía Intelbras</h4>
-                <p>Equipos originales, nuevos en caja sellada con soporte.</p>
+                <h4>Garantía Oficial</h4>
+                <p>Equipos originales, nuevos en caja sellada con respaldo de fábrica.</p>
               </div>
             </div>
 
@@ -364,8 +379,8 @@ export default function App() {
                 <MessageCircle size={22} />
               </div>
               <div className="feature-info">
-                <h4>Atención en WhatsApp</h4>
-                <p>Cotizaciones y confirmación de pedidos al instante.</p>
+                <h4>Atención Personalizada</h4>
+                <p>Coordinación inmediata de pedidos y presupuestos en WhatsApp.</p>
               </div>
             </div>
           </div>
@@ -420,7 +435,7 @@ export default function App() {
                 onChange={(e) => setSortBy(e.target.value)}
                 className="sort-select"
               >
-                <option value="featured">Destacados / Liquidación</option>
+                <option value="featured">Destacados</option>
                 <option value="price_asc">Menor precio primero</option>
                 <option value="price_desc">Mayor precio primero</option>
                 <option value="stock_desc">Mayor stock en depósito</option>
@@ -447,13 +462,21 @@ export default function App() {
           <div className="product-grid">
             {filteredProducts.map((p) => {
               const inStock = p.stock > 0;
+              const secondary = getSecondaryPrices(p);
               return (
                 <div key={p.id} className="product-card">
-                  {/* Card Visual / Thumbnail */}
-                  <div className="card-header-visual">
-                    <div className="visual-icon-box">
-                      {getCategoryIcon(p.category)}
-                    </div>
+                  {/* Card Visual / Real Product Image */}
+                  <div className="card-header-visual" onClick={() => setSelectedProduct(p)}>
+                    <img 
+                      src={p.image} 
+                      alt={p.name} 
+                      className="product-img"
+                      loading="lazy"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = '/products/default.svg';
+                      }}
+                    />
 
                     {/* Stock badge */}
                     <span className={`card-badge badge-${p.badge_color}`}>
@@ -482,7 +505,7 @@ export default function App() {
 
                     {/* Bullet Specs */}
                     <ul className="product-specs-list">
-                      {p.specs.slice(0, 2).map((spec, i) => (
+                      {(p.specs || []).slice(0, 2).map((spec, i) => (
                         <li key={i}>{spec}</li>
                       ))}
                     </ul>
@@ -495,14 +518,14 @@ export default function App() {
                           {currency === 'PYG' 
                             ? p.price_pyg.toLocaleString('es-PY') 
                             : currency === 'USD' 
-                              ? p.price_usd 
-                              : p.price_brl}
+                              ? (p.price_pyg / EXCHANGE_RATES.USD_TO_PYG).toFixed(2) 
+                              : (p.price_pyg / EXCHANGE_RATES.BRL_TO_PYG).toFixed(2)}
                         </span>
                       </div>
                       <div className="price-equivalents">
-                        {currency !== 'PYG' && <span>₲ {p.price_pyg.toLocaleString('es-PY')}</span>}
-                        {currency !== 'USD' && <span>US$ {p.price_usd}</span>}
-                        {currency !== 'BRL' && <span>R$ {p.price_brl}</span>}
+                        {currency !== 'PYG' && <span>{secondary.pyg}</span>}
+                        {currency !== 'USD' && <span>{secondary.usd}</span>}
+                        {currency !== 'BRL' && <span>{secondary.brl}</span>}
                       </div>
                     </div>
 
@@ -542,21 +565,28 @@ export default function App() {
               <button className="modal-close-btn" onClick={() => setSelectedProduct(null)}>
                 <X size={18} />
               </button>
-              <div style={{ textAlign: 'center', zIndex: 1 }}>
-                <div style={{ margin: '0 auto 0.5rem', width: '56px', height: '56px', background: 'rgba(255,255,255,0.15)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {getCategoryIcon(selectedProduct.category)}
-                </div>
-                <span style={{ fontSize: '0.8125rem', color: '#34d399', fontWeight: 700, textTransform: 'uppercase' }}>
-                  {selectedProduct.category}
-                </span>
-                <h3 style={{ fontSize: '1.25rem', fontWeight: 800, marginTop: '0.25rem' }}>{selectedProduct.name}</h3>
-              </div>
+              <img 
+                src={selectedProduct.image} 
+                alt={selectedProduct.name} 
+                className="modal-img" 
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/products/default.svg';
+                }}
+              />
             </div>
 
             <div className="modal-body">
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
+              <span style={{ fontSize: '0.8125rem', color: '#009845', fontWeight: 700, textTransform: 'uppercase' }}>
+                {selectedProduct.category}
+              </span>
+              <h3 style={{ fontSize: '1.35rem', fontWeight: 800, marginTop: '0.25rem', marginBottom: '1rem', color: '#0f172a' }}>
+                {selectedProduct.name}
+              </h3>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', background: '#f8fafc', padding: '0.75rem 1rem', borderRadius: '8px' }}>
                 <div>
-                  <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>CÓDIGO DE ARTÍCULO</span>
+                  <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>CÓDIGO SKU</span>
                   <div style={{ fontFamily: 'monospace', fontWeight: 700, color: '#0f172a' }}>{selectedProduct.sku}</div>
                 </div>
                 <div>
@@ -566,31 +596,34 @@ export default function App() {
                 <div>
                   <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>DISPONIBILIDAD</span>
                   <div style={{ fontWeight: 700, color: selectedProduct.stock > 0 ? '#10b981' : '#ef4444' }}>
-                    {selectedProduct.stock > 0 ? `${selectedProduct.stock} unidades` : 'Sin stock'}
+                    {selectedProduct.stock > 0 ? `${selectedProduct.stock} unidades en depósito` : 'Sin stock'}
                   </div>
                 </div>
               </div>
 
-              <div style={{ marginBottom: '1.5rem', background: '#f8fafc', padding: '1rem', borderRadius: '10px' }}>
-                <h4 style={{ fontSize: '0.875rem', fontWeight: 700, marginBottom: '0.5rem', color: '#334155' }}>Características Principales:</h4>
+              <div style={{ marginBottom: '1.5rem' }}>
+                <h4 style={{ fontSize: '0.875rem', fontWeight: 700, marginBottom: '0.5rem', color: '#334155' }}>Especificaciones y Garantía:</h4>
                 <ul style={{ listStyle: 'none' }}>
-                  {selectedProduct.specs.map((s, idx) => (
+                  {(selectedProduct.specs || []).map((s, idx) => (
                     <li key={idx} style={{ fontSize: '0.875rem', color: '#475569', marginBottom: '0.35rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                       <CheckCircle2 size={15} color="#009845" /> {s}
                     </li>
                   ))}
+                  <li style={{ fontSize: '0.875rem', color: '#475569', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                    <CheckCircle2 size={15} color="#009845" /> Garantía oficial Intelbras con soporte local en Canindeyú
+                  </li>
                 </ul>
               </div>
 
               {/* Price block */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', padding: '1rem', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '10px' }}>
                 <div>
-                  <span style={{ fontSize: '0.75rem', color: '#166534', fontWeight: 700 }}>PRECIO DE LIQUIDACIÓN:</span>
+                  <span style={{ fontSize: '0.75rem', color: '#166534', fontWeight: 700 }}>PRECIO:</span>
                   <div style={{ fontSize: '1.75rem', fontWeight: 900, color: '#14532d' }}>
                     {formatPrice(selectedProduct)}
                   </div>
                   <div style={{ fontSize: '0.8125rem', color: '#16a34a' }}>
-                    Equivalencias: ₲ {selectedProduct.price_pyg.toLocaleString('es-PY')} | US$ {selectedProduct.price_usd} | R$ {selectedProduct.price_brl}
+                    Cotización: ₲ {selectedProduct.price_pyg.toLocaleString('es-PY')} • US$ {(selectedProduct.price_pyg / EXCHANGE_RATES.USD_TO_PYG).toFixed(2)} • R$ {(selectedProduct.price_pyg / EXCHANGE_RATES.BRL_TO_PYG).toFixed(2)}
                   </div>
                 </div>
               </div>
@@ -647,6 +680,15 @@ export default function App() {
                     const p = item.product;
                     return (
                       <div key={p.id} className="cart-item-row">
+                        <img 
+                          src={p.image} 
+                          alt={p.name} 
+                          className="cart-item-thumb"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = '/products/default.svg';
+                          }}
+                        />
                         <div className="cart-item-info">
                           <h4 className="cart-item-title">{p.name}</h4>
                           <div className="cart-item-price">
@@ -722,11 +764,11 @@ export default function App() {
                       <strong style={{ color: '#0f172a' }}>₲ {cartTotals.pyg.toLocaleString('es-PY')}</strong>
                     </div>
                     <div className="totals-line">
-                      <span style={{ color: '#64748b', fontSize: '0.875rem' }}>Subtotal en Dólares:</span>
+                      <span style={{ color: '#64748b', fontSize: '0.875rem' }}>Subtotal en Dólares (US$):</span>
                       <strong style={{ color: '#0284c7' }}>US$ {cartTotals.usd}</strong>
                     </div>
                     <div className="totals-line">
-                      <span style={{ color: '#64748b', fontSize: '0.875rem' }}>Subtotal en Reales:</span>
+                      <span style={{ color: '#64748b', fontSize: '0.875rem' }}>Subtotal en Reales (R$):</span>
                       <strong style={{ color: '#16a34a' }}>R$ {cartTotals.brl}</strong>
                     </div>
                   </div>
@@ -762,7 +804,7 @@ export default function App() {
           <div className="footer-col">
             <h4>Intelbras Katueté</h4>
             <p>
-              Venta y distribución rápida de stock de telecomunicaciones, redes, videovigilancia y automatización para el departamento de Canindeyú y zona fronteriza.
+              Distribución y venta directa de equipamiento de telecomunicaciones, redes, videovigilancia y automatización para el departamento de Canindeyú y zona fronteriza.
             </p>
             <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem', alignItems: 'center', color: '#34d399', fontSize: '0.875rem' }}>
               <Clock size={16} /> Atención de Lunes a Sábado de 07:30 a 17:30 hs
@@ -773,7 +815,7 @@ export default function App() {
             <h4>Ubicación & Envíos</h4>
             <p>📍 Katueté, Departamento de Canindeyú, Paraguay.</p>
             <p style={{ marginTop: '0.5rem' }}>
-              Envíos diarios a Salto del Guairá, La Paloma, Puente Kyjhá, Corpus Christi, Catueté y todo Paraguay a través de empresas transportadoras reconocidas.
+              Envíos diarios a Salto del Guairá, La Paloma, Puente Kyjhá, Corpus Christi y todo Paraguay a través de empresas transportadoras reconocidas.
             </p>
           </div>
 
@@ -782,14 +824,14 @@ export default function App() {
             <p>
               • Efectivo en Guaraníes (₲), Dólares (US$) y Reales (R$)<br />
               • Transferencias Bancarias SIPAP (Bancos de Paraguay)<br />
-              • Pix brasileño para compradores de frontera
+              • Pix para compradores de la frontera
             </p>
           </div>
         </div>
 
         <div className="footer-bottom">
           <div>© {new Date().getFullYear()} Intelbras Katueté. Precios y disponibilidad sujetos a rotación de stock.</div>
-          <div>Precios redondos en múltiplos de 5 para liquidación ágil.</div>
+          <div>Equipamiento original con garantía oficial de fábrica.</div>
         </div>
       </footer>
     </div>

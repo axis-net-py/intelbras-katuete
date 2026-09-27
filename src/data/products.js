@@ -1,5 +1,10 @@
 // Catálogo de Equipos Intelbras - Katueté, Canindeyú, Paraguay
-// Precios redondos con markup para liquidación rápida
+// Cotizaciones oficiales de referencia Salto del Guairá
+export const EXCHANGE_RATES = {
+  USD_TO_PYG: 5900,
+  BRL_TO_PYG: 1140,
+  LAST_UPDATE: '27 de Septiembre, 2026'
+};
 
 export const PRODUCTS = [
   {
@@ -15,19 +20,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 59867,
     "price_pyg": 75000,
-    "price_usd": 10,
-    "price_brl": 55,
+    "price_usd": 12.71,
+    "price_brl": 65.79,
     "featured": true,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Adaptador Wi-Fi de largo alcance para PCs y notebooks",
+    "image": "/products/item-001.jpg",
+    "price_usd_formatted": "12.71",
+    "price_brl_formatted": "65.79",
+    "badge": "Stock Alto",
+    "badge_color": "emerald",
     "specs": [
-      "Antena de alta ganancia desmontable",
-      "Conexión USB 2.0 Plug & Play",
+      "Antena externa de alta ganancia desmontable",
+      "Conexión USB 2.0 de largo alcance",
       "Velocidad inalámbrica 300 Mbps"
-    ],
-    "badge": "Stock Mayorista",
-    "badge_color": "emerald"
+    ]
   },
   {
     "id": "item-002",
@@ -42,19 +49,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 105649,
     "price_pyg": 135000,
-    "price_usd": 15,
-    "price_brl": 95,
+    "price_usd": 22.88,
+    "price_brl": 118.42,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Amplía la señal Wi-Fi eliminando zonas muertas en el hogar u oficina",
-    "specs": [
-      "Velocidad hasta 300 Mbps",
-      "Fácil configuración con botón WPS",
-      "Diseño compacto enchufable a pared"
-    ],
+    "image": "/products/item-002.svg",
+    "price_usd_formatted": "22.88",
+    "price_brl_formatted": "118.42",
     "badge": "Disponible",
-    "badge_color": "blue"
+    "badge_color": "blue",
+    "specs": [
+      "Velocidad inalámbrica hasta 300 Mbps",
+      "Configuración rápida con botón WPS",
+      "Enchufe directo a la toma de corriente"
+    ]
   },
   {
     "id": "item-003",
@@ -69,19 +78,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 41185,
     "price_pyg": 55000,
-    "price_usd": 5,
-    "price_brl": 40,
+    "price_usd": 9.32,
+    "price_brl": 48.25,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Componente pasivo óptico balanceado para distribución de fibra",
-    "specs": [
-      "División balanceada 1x8",
-      "Baja pérdida de inserción y alta uniformidad",
-      "Calidad certificada para redes FTTH/PON"
-    ],
+    "image": "/products/item-003.jpg",
+    "price_usd_formatted": "9.32",
+    "price_brl_formatted": "48.25",
     "badge": "Disponible",
-    "badge_color": "blue"
+    "badge_color": "blue",
+    "specs": [
+      "División óptica balanceada 1x8",
+      "Baja pérdida de inserción y alta uniformidad",
+      "Conectores estándar de fibra óptica"
+    ]
   },
   {
     "id": "item-004",
@@ -96,19 +107,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 64358,
     "price_pyg": 85000,
-    "price_usd": 10,
-    "price_brl": 60,
+    "price_usd": 14.41,
+    "price_brl": 74.56,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Componente pasivo óptico balanceado para distribución de fibra",
-    "specs": [
-      "División balanceada 1x8",
-      "Baja pérdida de inserción y alta uniformidad",
-      "Calidad certificada para redes FTTH/PON"
-    ],
+    "image": "/products/item-004.jpg",
+    "price_usd_formatted": "14.41",
+    "price_brl_formatted": "74.56",
     "badge": "Disponible",
-    "badge_color": "blue"
+    "badge_color": "blue",
+    "specs": [
+      "División óptica balanceada 1x8",
+      "Baja pérdida de inserción y alta uniformidad",
+      "Conectores estándar de fibra óptica"
+    ]
   },
   {
     "id": "item-005",
@@ -123,19 +136,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 54614,
     "price_pyg": 70000,
-    "price_usd": 10,
-    "price_brl": 50,
+    "price_usd": 11.86,
+    "price_brl": 61.4,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Componente pasivo óptico balanceado para distribución de fibra",
-    "specs": [
-      "División balanceada 1x8",
-      "Baja pérdida de inserción y alta uniformidad",
-      "Calidad certificada para redes FTTH/PON"
-    ],
+    "image": "/products/item-005.jpg",
+    "price_usd_formatted": "11.86",
+    "price_brl_formatted": "61.40",
     "badge": "Disponible",
-    "badge_color": "blue"
+    "badge_color": "blue",
+    "specs": [
+      "División óptica balanceada 1x8",
+      "Baja pérdida de inserción y alta uniformidad",
+      "Conectores estándar de fibra óptica"
+    ]
   },
   {
     "id": "item-006",
@@ -150,19 +165,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 116078,
     "price_pyg": 150000,
-    "price_usd": 20,
-    "price_brl": 105,
+    "price_usd": 25.42,
+    "price_brl": 131.58,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución audio, video y accesorios Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-006.svg",
+    "price_usd_formatted": "25.42",
+    "price_brl_formatted": "131.58",
+    "badge": "Últimas 4 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   },
   {
     "id": "item-007",
@@ -177,19 +194,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 128436,
     "price_pyg": 165000,
-    "price_usd": 20,
-    "price_brl": 120,
+    "price_usd": 27.97,
+    "price_brl": 144.74,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Conexión ultra rápida AC1200 para streaming y juegos sin cortes",
+    "image": "/products/item-007.jpg",
+    "price_usd_formatted": "27.97",
+    "price_brl_formatted": "144.74",
+    "badge": "Últimas 4 un.",
+    "badge_color": "amber",
     "specs": [
-      "Dual Band 2.4 GHz y 5 GHz",
-      "Velocidad combinada AC 1200",
-      "Puerto USB 3.0 ultrarrápido"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Dual Band 2.4 GHz y 5 GHz (AC1200)",
+      "Conexión USB 3.0 de alta velocidad",
+      "Ideal para streaming y trabajo pesado"
+    ]
   },
   {
     "id": "item-008",
@@ -204,19 +223,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 435380,
     "price_pyg": 545000,
-    "price_usd": 70,
-    "price_brl": 390,
+    "price_usd": 92.37,
+    "price_brl": 478.07,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Access point empresarial corporativo de alta estabilidad y cobertura",
+    "image": "/products/item-008.svg",
+    "price_usd_formatted": "92.37",
+    "price_brl_formatted": "478.07",
+    "badge": "Últimas 3 un.",
+    "badge_color": "amber",
     "specs": [
-      "Gestión centralizada multi-AP",
-      "Soporta alta densidad de usuarios simultáneos",
+      "Gestión centralizada para empresas",
+      "Soporta alta densidad de usuarios",
       "Alimentación PoE 802.3af"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+    ]
   },
   {
     "id": "item-009",
@@ -231,19 +252,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 655950,
     "price_pyg": 820000,
-    "price_usd": 105,
-    "price_brl": 585,
+    "price_usd": 138.98,
+    "price_brl": 719.3,
     "featured": true,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Transforma cualquier televisor en un potente Smart TV con Android",
+    "image": "/products/item-009.jpg",
+    "price_usd_formatted": "138.98",
+    "price_brl_formatted": "719.30",
+    "badge": "Últimas 3 un.",
+    "badge_color": "amber",
     "specs": [
       "Android TV certificado con Google Assistant",
       "Resolución Full HD y control por voz Bluetooth",
       "Puertos HDMI, USB y Ethernet RJ45"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+    ]
   },
   {
     "id": "item-010",
@@ -258,19 +281,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 1225864,
     "price_pyg": 1535000,
-    "price_usd": 195,
-    "price_brl": 1095,
+    "price_usd": 260.17,
+    "price_brl": 1346.49,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Access point empresarial corporativo de alta estabilidad y cobertura",
+    "image": "/products/item-010.svg",
+    "price_usd_formatted": "260.17",
+    "price_brl_formatted": "1346.49",
+    "badge": "Últimas 3 un.",
+    "badge_color": "amber",
     "specs": [
-      "Gestión centralizada multi-AP",
-      "Soporta alta densidad de usuarios simultáneos",
+      "Gestión centralizada para empresas",
+      "Soporta alta densidad de usuarios",
       "Alimentación PoE 802.3af"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+    ]
   },
   {
     "id": "item-011",
@@ -285,19 +310,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 53217,
     "price_pyg": 70000,
-    "price_usd": 10,
-    "price_brl": 50,
+    "price_usd": 11.86,
+    "price_brl": 61.4,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución audio, video y accesorios Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-011.svg",
+    "price_usd_formatted": "11.86",
+    "price_brl_formatted": "61.40",
+    "badge": "Últimas 3 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   },
   {
     "id": "item-012",
@@ -312,19 +339,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 561406,
     "price_pyg": 705000,
-    "price_usd": 90,
-    "price_brl": 505,
+    "price_usd": 119.49,
+    "price_brl": 618.42,
     "featured": true,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Access point empresarial corporativo de alta estabilidad y cobertura",
+    "image": "/products/item-012.svg",
+    "price_usd_formatted": "119.49",
+    "price_brl_formatted": "618.42",
+    "badge": "Últimas 3 un.",
+    "badge_color": "amber",
     "specs": [
-      "Gestión centralizada multi-AP",
-      "Soporta alta densidad de usuarios simultáneos",
+      "Gestión centralizada para empresas",
+      "Soporta alta densidad de usuarios",
       "Alimentación PoE 802.3af"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+    ]
   },
   {
     "id": "item-013",
@@ -339,19 +368,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 262588,
     "price_pyg": 330000,
-    "price_usd": 40,
-    "price_brl": 235,
+    "price_usd": 55.93,
+    "price_brl": 289.47,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución redes y fibra óptica Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-013.svg",
+    "price_usd_formatted": "55.93",
+    "price_brl_formatted": "289.47",
+    "badge": "Últimas 2 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   },
   {
     "id": "item-014",
@@ -366,19 +397,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 249323,
     "price_pyg": 315000,
-    "price_usd": 40,
-    "price_brl": 225,
+    "price_usd": 53.39,
+    "price_brl": 276.32,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución redes y fibra óptica Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-014.svg",
+    "price_usd_formatted": "53.39",
+    "price_brl_formatted": "276.32",
+    "badge": "Últimas 2 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   },
   {
     "id": "item-015",
@@ -393,19 +426,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 151536,
     "price_pyg": 190000,
-    "price_usd": 25,
-    "price_brl": 135,
+    "price_usd": 32.2,
+    "price_brl": 166.67,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución redes y fibra óptica Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-015.jpg",
+    "price_usd_formatted": "32.20",
+    "price_brl_formatted": "166.67",
+    "badge": "Últimas 1 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "8 puertos Gigabit 10/100/1000 Mbps",
+      "Plug & Play sin necesidad de configuración",
+      "Eficiencia energética Green Ethernet"
+    ]
   },
   {
     "id": "item-016",
@@ -420,19 +455,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 35843,
     "price_pyg": 45000,
-    "price_usd": 5,
-    "price_brl": 30,
+    "price_usd": 7.63,
+    "price_brl": 39.47,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución audio, video y accesorios Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-016.svg",
+    "price_usd_formatted": "7.63",
+    "price_brl_formatted": "39.47",
+    "badge": "Últimas 2 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   },
   {
     "id": "item-017",
@@ -447,19 +484,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 384878,
     "price_pyg": 485000,
-    "price_usd": 60,
-    "price_brl": 345,
+    "price_usd": 82.2,
+    "price_brl": 425.44,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Cámara web de alta nitidez para videollamadas y teletrabajo",
+    "image": "/products/item-017.jpg",
+    "price_usd_formatted": "82.20",
+    "price_brl_formatted": "425.44",
+    "badge": "Últimas 2 un.",
+    "badge_color": "amber",
     "specs": [
-      "Micrófono omnidireccional con reducción de ruido",
-      "Enfoque automático y clip articulado",
-      "Plug & play compatible con Zoom/Meet/Teams"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Micrófono omnidireccional integrado",
+      "Clip articulado para monitores y notebooks",
+      "Plug & Play compatible con Zoom y Teams"
+    ]
   },
   {
     "id": "item-018",
@@ -474,19 +513,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 1043810,
     "price_pyg": 1305000,
-    "price_usd": 165,
-    "price_brl": 930,
+    "price_usd": 221.19,
+    "price_brl": 1144.74,
     "featured": true,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Sistema Mesh inteligente sin cortes al caminar por el inmueble",
+    "image": "/products/item-018.jpg",
+    "price_usd_formatted": "221.19",
+    "price_brl_formatted": "1144.74",
+    "badge": "Últimas 2 un.",
+    "badge_color": "amber",
     "specs": [
       "Tecnología Wi-Fi Mesh de cobertura total",
       "Puertos Gigabit Ethernet",
-      "Configuración fácil vía App Intelbras Wi-Fi"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Gestión sencilla mediante App móvil"
+    ]
   },
   {
     "id": "item-019",
@@ -501,19 +542,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 544531,
     "price_pyg": 685000,
-    "price_usd": 90,
-    "price_brl": 490,
+    "price_usd": 116.1,
+    "price_brl": 600.88,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Cámara web de alta nitidez para videollamadas y teletrabajo",
+    "image": "/products/item-019.jpg",
+    "price_usd_formatted": "116.10",
+    "price_brl_formatted": "600.88",
+    "badge": "Últimas 2 un.",
+    "badge_color": "amber",
     "specs": [
-      "Micrófono omnidireccional con reducción de ruido",
-      "Enfoque automático y clip articulado",
-      "Plug & play compatible con Zoom/Meet/Teams"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Micrófono omnidireccional integrado",
+      "Clip articulado para monitores y notebooks",
+      "Plug & Play compatible con Zoom y Teams"
+    ]
   },
   {
     "id": "item-020",
@@ -528,19 +571,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 276425,
     "price_pyg": 350000,
-    "price_usd": 45,
-    "price_brl": 250,
+    "price_usd": 59.32,
+    "price_brl": 307.02,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución redes y fibra óptica Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-020.jpg",
+    "price_usd_formatted": "59.32",
+    "price_brl_formatted": "307.02",
+    "badge": "Últimas 1 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "CPE de 5 GHz con antena MiMo de 16 dBi",
+      "Alcance para enlaces punto a punto",
+      "Protección contra sobretensiones"
+    ]
   },
   {
     "id": "item-021",
@@ -555,19 +600,21 @@ export const PRODUCTS = [
     "in_stock": false,
     "cost_pyg": 650020,
     "price_pyg": 815000,
-    "price_usd": 105,
-    "price_brl": 580,
+    "price_usd": 138.14,
+    "price_brl": 714.91,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución redes y fibra óptica Intelbras garantizada para comercios y residencias",
-    "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
+    "image": "/products/item-021.svg",
+    "price_usd_formatted": "138.14",
+    "price_brl_formatted": "714.91",
     "badge": "Bajo Pedido",
-    "badge_color": "gray"
+    "badge_color": "gray",
+    "specs": [
+      "Gestión centralizada para empresas",
+      "Soporta alta densidad de usuarios",
+      "Alimentación PoE 802.3af"
+    ]
   },
   {
     "id": "item-022",
@@ -582,19 +629,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 1152864,
     "price_pyg": 1445000,
-    "price_usd": 185,
-    "price_brl": 1030,
+    "price_usd": 244.92,
+    "price_brl": 1267.54,
     "featured": true,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Sistema Mesh inteligente sin cortes al caminar por el inmueble",
+    "image": "/products/item-022.jpg",
+    "price_usd_formatted": "244.92",
+    "price_brl_formatted": "1267.54",
+    "badge": "Últimas 1 un.",
+    "badge_color": "amber",
     "specs": [
       "Tecnología Wi-Fi Mesh de cobertura total",
       "Puertos Gigabit Ethernet",
-      "Configuración fácil vía App Intelbras Wi-Fi"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Gestión sencilla mediante App móvil"
+    ]
   },
   {
     "id": "item-023",
@@ -609,19 +658,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 535088,
     "price_pyg": 670000,
-    "price_usd": 85,
-    "price_brl": 480,
+    "price_usd": 113.56,
+    "price_brl": 587.72,
     "featured": true,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Sistema Mesh inteligente sin cortes al caminar por el inmueble",
+    "image": "/products/item-023.jpg",
+    "price_usd_formatted": "113.56",
+    "price_brl_formatted": "587.72",
+    "badge": "Últimas 1 un.",
+    "badge_color": "amber",
     "specs": [
       "Tecnología Wi-Fi Mesh de cobertura total",
       "Puertos Gigabit Ethernet",
-      "Configuración fácil vía App Intelbras Wi-Fi"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Gestión sencilla mediante App móvil"
+    ]
   },
   {
     "id": "item-024",
@@ -636,19 +687,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 71230,
     "price_pyg": 90000,
-    "price_usd": 10,
-    "price_brl": 65,
+    "price_usd": 15.25,
+    "price_brl": 78.95,
     "featured": true,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Sensor de presencia 360° para encendido automático de luces",
-    "specs": [
-      "Sensor infrarrojo pasivo de alta sensibilidad",
-      "Ajuste de temporizador y fotocélula de luz diurna",
-      "Ahorro energético inteligente automático"
-    ],
+    "image": "/products/item-024.jpg",
+    "price_usd_formatted": "15.25",
+    "price_brl_formatted": "78.95",
     "badge": "Disponible",
-    "badge_color": "blue"
+    "badge_color": "blue",
+    "specs": [
+      "Sensor infrarrojo pasivo 360° para iluminación",
+      "Temporizador ajustable y fotocélula",
+      "Ahorro energético automático"
+    ]
   },
   {
     "id": "item-025",
@@ -663,19 +716,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 89678,
     "price_pyg": 115000,
-    "price_usd": 15,
-    "price_brl": 80,
+    "price_usd": 19.49,
+    "price_brl": 100.88,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución seguridad e intercom Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-025.jpg",
+    "price_usd_formatted": "19.49",
+    "price_brl_formatted": "100.88",
+    "badge": "Últimas 3 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   },
   {
     "id": "item-026",
@@ -690,19 +745,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 118359,
     "price_pyg": 150000,
-    "price_usd": 20,
-    "price_brl": 105,
+    "price_usd": 25.42,
+    "price_brl": 131.58,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Sensor de presencia 360° para encendido automático de luces",
+    "image": "/products/item-026.jpg",
+    "price_usd_formatted": "25.42",
+    "price_brl_formatted": "131.58",
+    "badge": "Últimas 2 un.",
+    "badge_color": "amber",
     "specs": [
-      "Sensor infrarrojo pasivo de alta sensibilidad",
-      "Ajuste de temporizador y fotocélula de luz diurna",
-      "Ahorro energético inteligente automático"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Sensor infrarrojo pasivo 360° para iluminación",
+      "Temporizador ajustable y fotocélula",
+      "Ahorro energético automático"
+    ]
   },
   {
     "id": "item-027",
@@ -717,19 +774,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 228048,
     "price_pyg": 290000,
-    "price_usd": 35,
-    "price_brl": 205,
+    "price_usd": 49.15,
+    "price_brl": 254.39,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución iluminación y sensores Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-027.jpg",
+    "price_usd_formatted": "49.15",
+    "price_brl_formatted": "254.39",
+    "badge": "Últimas 1 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Encendido automático ante corte de luz",
+      "Batería recargable de alta autonomía",
+      "Fácil fijación en pared o techo"
+    ]
   },
   {
     "id": "item-028",
@@ -744,19 +803,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 63262,
     "price_pyg": 80000,
-    "price_usd": 10,
-    "price_brl": 55,
+    "price_usd": 13.56,
+    "price_brl": 70.18,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Sensor de presencia 360° para encendido automático de luces",
+    "image": "/products/item-028.jpg",
+    "price_usd_formatted": "13.56",
+    "price_brl_formatted": "70.18",
+    "badge": "Últimas 2 un.",
+    "badge_color": "amber",
     "specs": [
-      "Sensor infrarrojo pasivo de alta sensibilidad",
-      "Ajuste de temporizador y fotocélula de luz diurna",
-      "Ahorro energético inteligente automático"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Sensor infrarrojo pasivo 360° para iluminación",
+      "Temporizador ajustable y fotocélula",
+      "Ahorro energético automático"
+    ]
   },
   {
     "id": "item-029",
@@ -771,19 +832,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 79399,
     "price_pyg": 100000,
-    "price_usd": 15,
-    "price_brl": 70,
+    "price_usd": 16.95,
+    "price_brl": 87.72,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Sensor de presencia 360° para encendido automático de luces",
-    "specs": [
-      "Sensor infrarrojo pasivo de alta sensibilidad",
-      "Ajuste de temporizador y fotocélula de luz diurna",
-      "Ahorro energético inteligente automático"
-    ],
+    "image": "/products/item-029.jpg",
+    "price_usd_formatted": "16.95",
+    "price_brl_formatted": "87.72",
     "badge": "Disponible",
-    "badge_color": "blue"
+    "badge_color": "blue",
+    "specs": [
+      "Sensor infrarrojo pasivo 360° para iluminación",
+      "Temporizador ajustable y fotocélula",
+      "Ahorro energético automático"
+    ]
   },
   {
     "id": "item-030",
@@ -798,19 +861,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 29793,
     "price_pyg": 40000,
-    "price_usd": 5,
-    "price_brl": 30,
+    "price_usd": 6.78,
+    "price_brl": 35.09,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución iluminación y sensores Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-030.jpg",
+    "price_usd_formatted": "6.78",
+    "price_brl_formatted": "35.09",
+    "badge": "Últimas 1 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Encendido automático ante corte de luz",
+      "Batería recargable de alta autonomía",
+      "Fácil fijación en pared o techo"
+    ]
   },
   {
     "id": "item-031",
@@ -825,19 +890,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 136390,
     "price_pyg": 175000,
-    "price_usd": 20,
-    "price_brl": 125,
+    "price_usd": 29.66,
+    "price_brl": 153.51,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Automatización residencial Wi-Fi sin necesidad de central costosa",
+    "image": "/products/item-031.jpg",
+    "price_usd_formatted": "29.66",
+    "price_brl_formatted": "153.51",
+    "badge": "Disponible",
+    "badge_color": "blue",
     "specs": [
       "Control remoto vía App IZY Smart",
-      "Compatible con Alexa y Google Assistant",
+      "Compatible con asistentes de voz",
       "Programación de horarios y rutinas automáticas"
-    ],
-    "badge": "Disponible",
-    "badge_color": "blue"
+    ]
   },
   {
     "id": "item-032",
@@ -852,19 +919,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 76813,
     "price_pyg": 100000,
-    "price_usd": 15,
-    "price_brl": 70,
+    "price_usd": 16.95,
+    "price_brl": 87.72,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Automatización residencial Wi-Fi sin necesidad de central costosa",
+    "image": "/products/item-032.jpg",
+    "price_usd_formatted": "16.95",
+    "price_brl_formatted": "87.72",
+    "badge": "Disponible",
+    "badge_color": "blue",
     "specs": [
       "Control remoto vía App IZY Smart",
-      "Compatible con Alexa y Google Assistant",
+      "Compatible con asistentes de voz",
       "Programación de horarios y rutinas automáticas"
-    ],
-    "badge": "Disponible",
-    "badge_color": "blue"
+    ]
   },
   {
     "id": "item-033",
@@ -879,19 +948,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 170755,
     "price_pyg": 215000,
-    "price_usd": 30,
-    "price_brl": 155,
+    "price_usd": 36.44,
+    "price_brl": 188.6,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Automatización residencial Wi-Fi sin necesidad de central costosa",
+    "image": "/products/item-033.jpg",
+    "price_usd_formatted": "36.44",
+    "price_brl_formatted": "188.60",
+    "badge": "Disponible",
+    "badge_color": "blue",
     "specs": [
       "Control remoto vía App IZY Smart",
-      "Compatible con Alexa y Google Assistant",
+      "Compatible con asistentes de voz",
       "Programación de horarios y rutinas automáticas"
-    ],
-    "badge": "Disponible",
-    "badge_color": "blue"
+    ]
   },
   {
     "id": "item-034",
@@ -906,19 +977,21 @@ export const PRODUCTS = [
     "in_stock": false,
     "cost_pyg": 179726,
     "price_pyg": 225000,
-    "price_usd": 30,
-    "price_brl": 160,
+    "price_usd": 38.14,
+    "price_brl": 197.37,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución redes y fibra óptica Intelbras garantizada para comercios y residencias",
-    "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
+    "image": "/products/item-034.svg",
+    "price_usd_formatted": "38.14",
+    "price_brl_formatted": "197.37",
     "badge": "Bajo Pedido",
-    "badge_color": "gray"
+    "badge_color": "gray",
+    "specs": [
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   },
   {
     "id": "item-035",
@@ -933,19 +1006,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 245079,
     "price_pyg": 310000,
-    "price_usd": 40,
-    "price_brl": 220,
+    "price_usd": 52.54,
+    "price_brl": 271.93,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución casa inteligente (smart home) Intelbras garantizada para comercios y residencias",
-    "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
+    "image": "/products/item-035.svg",
+    "price_usd_formatted": "52.54",
+    "price_brl_formatted": "271.93",
     "badge": "Disponible",
-    "badge_color": "blue"
+    "badge_color": "blue",
+    "specs": [
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   },
   {
     "id": "item-036",
@@ -960,19 +1035,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 170755,
     "price_pyg": 215000,
-    "price_usd": 30,
-    "price_brl": 155,
+    "price_usd": 36.44,
+    "price_brl": 188.6,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Automatización residencial Wi-Fi sin necesidad de central costosa",
+    "image": "/products/item-036.jpg",
+    "price_usd_formatted": "36.44",
+    "price_brl_formatted": "188.60",
+    "badge": "Disponible",
+    "badge_color": "blue",
     "specs": [
       "Control remoto vía App IZY Smart",
-      "Compatible con Alexa y Google Assistant",
+      "Compatible con asistentes de voz",
       "Programación de horarios y rutinas automáticas"
-    ],
-    "badge": "Disponible",
-    "badge_color": "blue"
+    ]
   },
   {
     "id": "item-037",
@@ -987,19 +1064,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 147854,
     "price_pyg": 185000,
-    "price_usd": 25,
-    "price_brl": 130,
+    "price_usd": 31.36,
+    "price_brl": 162.28,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Automatización residencial Wi-Fi sin necesidad de central costosa",
+    "image": "/products/item-037.jpg",
+    "price_usd_formatted": "31.36",
+    "price_brl_formatted": "162.28",
+    "badge": "Disponible",
+    "badge_color": "blue",
     "specs": [
       "Control remoto vía App IZY Smart",
-      "Compatible con Alexa y Google Assistant",
+      "Compatible con asistentes de voz",
       "Programación de horarios y rutinas automáticas"
-    ],
-    "badge": "Disponible",
-    "badge_color": "blue"
+    ]
   },
   {
     "id": "item-038",
@@ -1014,19 +1093,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 151349,
     "price_pyg": 190000,
-    "price_usd": 25,
-    "price_brl": 135,
+    "price_usd": 32.2,
+    "price_brl": 166.67,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Automatización residencial Wi-Fi sin necesidad de central costosa",
+    "image": "/products/item-038.jpg",
+    "price_usd_formatted": "32.20",
+    "price_brl_formatted": "166.67",
+    "badge": "Últimas 4 un.",
+    "badge_color": "amber",
     "specs": [
       "Control remoto vía App IZY Smart",
-      "Compatible con Alexa y Google Assistant",
+      "Compatible con asistentes de voz",
       "Programación de horarios y rutinas automáticas"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+    ]
   },
   {
     "id": "item-039",
@@ -1041,19 +1122,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 511130,
     "price_pyg": 640000,
-    "price_usd": 80,
-    "price_brl": 455,
+    "price_usd": 108.47,
+    "price_brl": 561.4,
     "featured": true,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Videoportero inteligente Wi-Fi para atender la puerta desde donde estés",
+    "image": "/products/item-039.jpg",
+    "price_usd_formatted": "108.47",
+    "price_brl_formatted": "561.40",
+    "badge": "Disponible",
+    "badge_color": "blue",
     "specs": [
       "Cámara HD con visión nocturna infrarroja",
       "Notificación y visualización remota en el celular",
       "Audio bidireccional en tiempo real"
-    ],
-    "badge": "Disponible",
-    "badge_color": "blue"
+    ]
   },
   {
     "id": "item-040",
@@ -1068,19 +1151,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 567192,
     "price_pyg": 710000,
-    "price_usd": 90,
-    "price_brl": 505,
+    "price_usd": 120.34,
+    "price_brl": 622.81,
     "featured": true,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Videoportero inteligente Wi-Fi para atender la puerta desde donde estés",
+    "image": "/products/item-040.jpg",
+    "price_usd_formatted": "120.34",
+    "price_brl_formatted": "622.81",
+    "badge": "Últimas 4 un.",
+    "badge_color": "amber",
     "specs": [
       "Cámara HD con visión nocturna infrarroja",
       "Notificación y visualización remota en el celular",
       "Audio bidireccional en tiempo real"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+    ]
   },
   {
     "id": "item-041",
@@ -1095,19 +1180,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 655950,
     "price_pyg": 820000,
-    "price_usd": 105,
-    "price_brl": 585,
+    "price_usd": 138.98,
+    "price_brl": 719.3,
     "featured": true,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Transforma cualquier televisor en un potente Smart TV con Android",
+    "image": "/products/item-041.jpg",
+    "price_usd_formatted": "138.98",
+    "price_brl_formatted": "719.30",
+    "badge": "Últimas 2 un.",
+    "badge_color": "amber",
     "specs": [
       "Android TV certificado con Google Assistant",
       "Resolución Full HD y control por voz Bluetooth",
       "Puertos HDMI, USB y Ethernet RJ45"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+    ]
   },
   {
     "id": "item-042",
@@ -1122,19 +1209,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 216597,
     "price_pyg": 275000,
-    "price_usd": 35,
-    "price_brl": 195,
+    "price_usd": 46.61,
+    "price_brl": 241.23,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Automatización residencial Wi-Fi sin necesidad de central costosa",
+    "image": "/products/item-042.jpg",
+    "price_usd_formatted": "46.61",
+    "price_brl_formatted": "241.23",
+    "badge": "Últimas 3 un.",
+    "badge_color": "amber",
     "specs": [
       "Control remoto vía App IZY Smart",
-      "Compatible con Alexa y Google Assistant",
+      "Compatible con asistentes de voz",
       "Programación de horarios y rutinas automáticas"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+    ]
   },
   {
     "id": "item-043",
@@ -1149,19 +1238,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 229144,
     "price_pyg": 290000,
-    "price_usd": 35,
-    "price_brl": 205,
+    "price_usd": 49.15,
+    "price_brl": 254.39,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución seguridad e intercom Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-043.jpg",
+    "price_usd_formatted": "49.15",
+    "price_brl_formatted": "254.39",
+    "badge": "Últimas 3 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   },
   {
     "id": "item-044",
@@ -1176,19 +1267,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 114571,
     "price_pyg": 145000,
-    "price_usd": 20,
-    "price_brl": 105,
+    "price_usd": 24.58,
+    "price_brl": 127.19,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución casa inteligente (smart home) Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-044.svg",
+    "price_usd_formatted": "24.58",
+    "price_brl_formatted": "127.19",
+    "badge": "Últimas 2 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   },
   {
     "id": "item-045",
@@ -1203,19 +1296,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 131786,
     "price_pyg": 165000,
-    "price_usd": 20,
-    "price_brl": 120,
+    "price_usd": 27.97,
+    "price_brl": 144.74,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Automatización residencial Wi-Fi sin necesidad de central costosa",
+    "image": "/products/item-045.jpg",
+    "price_usd_formatted": "27.97",
+    "price_brl_formatted": "144.74",
+    "badge": "Últimas 2 un.",
+    "badge_color": "amber",
     "specs": [
       "Control remoto vía App IZY Smart",
-      "Compatible con Alexa y Google Assistant",
+      "Compatible con asistentes de voz",
       "Programación de horarios y rutinas automáticas"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+    ]
   },
   {
     "id": "item-046",
@@ -1230,19 +1325,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 475502,
     "price_pyg": 595000,
-    "price_usd": 75,
-    "price_brl": 425,
+    "price_usd": 100.85,
+    "price_brl": 521.93,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución equipos y telecom Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-046.svg",
+    "price_usd_formatted": "100.85",
+    "price_brl_formatted": "521.93",
+    "badge": "Últimas 2 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   },
   {
     "id": "item-047",
@@ -1257,19 +1354,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 355187,
     "price_pyg": 445000,
-    "price_usd": 55,
-    "price_brl": 320,
+    "price_usd": 75.42,
+    "price_brl": 390.35,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución seguridad e intercom Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-047.svg",
+    "price_usd_formatted": "75.42",
+    "price_brl_formatted": "390.35",
+    "badge": "Últimas 2 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   },
   {
     "id": "item-048",
@@ -1284,19 +1383,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 848719,
     "price_pyg": 1065000,
-    "price_usd": 135,
-    "price_brl": 760,
+    "price_usd": 180.51,
+    "price_brl": 934.21,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución casa inteligente (smart home) Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-048.svg",
+    "price_usd_formatted": "180.51",
+    "price_brl_formatted": "934.21",
+    "badge": "Últimas 2 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   },
   {
     "id": "item-049",
@@ -1311,19 +1412,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 1084061,
     "price_pyg": 1360000,
-    "price_usd": 175,
-    "price_brl": 970,
+    "price_usd": 230.51,
+    "price_brl": 1192.98,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Cerradura digital de máxima seguridad y elegancia",
+    "image": "/products/item-049.jpg",
+    "price_usd_formatted": "230.51",
+    "price_brl_formatted": "1192.98",
+    "badge": "Últimas 1 un.",
+    "badge_color": "amber",
     "specs": [
       "Apertura por contraseña numérica o tarjeta RFID",
       "Alarma sonora antiviolación e incendio",
-      "Cierre automático de embutir"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Cerradura digital de embutir"
+    ]
   },
   {
     "id": "item-050",
@@ -1338,19 +1441,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 931151,
     "price_pyg": 1165000,
-    "price_usd": 150,
-    "price_brl": 830,
+    "price_usd": 197.46,
+    "price_brl": 1021.93,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución seguridad e intercom Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-050.svg",
+    "price_usd_formatted": "197.46",
+    "price_brl_formatted": "1021.93",
+    "badge": "Últimas 1 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   },
   {
     "id": "item-051",
@@ -1365,19 +1470,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 135337,
     "price_pyg": 170000,
-    "price_usd": 20,
-    "price_brl": 120,
+    "price_usd": 28.81,
+    "price_brl": 149.12,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución equipos y telecom Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-051.jpg",
+    "price_usd_formatted": "28.81",
+    "price_brl_formatted": "149.12",
+    "badge": "Últimas 1 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Identificador de llamadas y altavoz manos libres",
+      "3 teclas de marcación rápida directa",
+      "No requiere baterías"
+    ]
   },
   {
     "id": "item-052",
@@ -1392,19 +1499,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 450361,
     "price_pyg": 565000,
-    "price_usd": 70,
-    "price_brl": 405,
+    "price_usd": 95.76,
+    "price_brl": 495.61,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Central de intercomunicación para edificios y condominios cerrados",
+    "image": "/products/item-052.jpg",
+    "price_usd_formatted": "95.76",
+    "price_brl_formatted": "495.61",
+    "badge": "Últimas 1 un.",
+    "badge_color": "amber",
     "specs": [
-      "Central colectiva para 12 departamentos",
+      "Central para hasta 12 departamentos",
       "Conexión directa a terminales TDMI 300",
       "Llamadas secretas y exclusivas"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+    ]
   },
   {
     "id": "item-053",
@@ -1419,19 +1528,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 525930,
     "price_pyg": 660000,
-    "price_usd": 85,
-    "price_brl": 470,
+    "price_usd": 111.86,
+    "price_brl": 578.95,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución audio, video y accesorios Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-053.svg",
+    "price_usd_formatted": "111.86",
+    "price_brl_formatted": "578.95",
+    "badge": "Últimas 3 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   },
   {
     "id": "item-054",
@@ -1446,19 +1557,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 56990,
     "price_pyg": 75000,
-    "price_usd": 10,
-    "price_brl": 55,
+    "price_usd": 12.71,
+    "price_brl": 65.79,
     "featured": true,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Terminal intercomunicador de alta durabilidad para condominios y edificios",
+    "image": "/products/item-054.jpg",
+    "price_usd_formatted": "12.71",
+    "price_brl_formatted": "65.79",
+    "badge": "Stock Alto",
+    "badge_color": "emerald",
     "specs": [
       "Diseñado para centrales de consorcio / condominio",
-      "Teclas luminosas y alta fidelidad acústica",
-      "Instalación en pared o mesa"
-    ],
-    "badge": "Stock Mayorista",
-    "badge_color": "emerald"
+      "Teclas exclusivas de Portaria y Cerradura",
+      "Ajuste de volumen y fácil instalación"
+    ]
   },
   {
     "id": "item-055",
@@ -1473,19 +1586,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 246371,
     "price_pyg": 310000,
-    "price_usd": 40,
-    "price_brl": 220,
+    "price_usd": 52.54,
+    "price_brl": 271.93,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución audio, video y accesorios Intelbras garantizada para comercios y residencias",
-    "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
+    "image": "/products/item-055.svg",
+    "price_usd_formatted": "52.54",
+    "price_brl_formatted": "271.93",
     "badge": "Disponible",
-    "badge_color": "blue"
+    "badge_color": "blue",
+    "specs": [
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   },
   {
     "id": "item-056",
@@ -1500,19 +1615,21 @@ export const PRODUCTS = [
     "in_stock": true,
     "cost_pyg": 92161,
     "price_pyg": 120000,
-    "price_usd": 15,
-    "price_brl": 85,
+    "price_usd": 20.34,
+    "price_brl": 105.26,
     "featured": false,
     "warranty": "6 meses de garantía oficial",
     "condition": "Nuevo en caja original / sellado",
-    "tagline": "Solución seguridad e intercom Intelbras garantizada para comercios y residencias",
+    "image": "/products/item-056.svg",
+    "price_usd_formatted": "20.34",
+    "price_brl_formatted": "105.26",
+    "badge": "Últimas 3 un.",
+    "badge_color": "amber",
     "specs": [
-      "Equipamiento profesional original Intelbras",
-      "Disponibilidad de entrega rápida en la región",
-      "Soporte técnico y garantía"
-    ],
-    "badge": "Últimas Unidades",
-    "badge_color": "amber"
+      "Equipamiento original Intelbras garantizado",
+      "Disponibilidad inmediata para retiro en Katueté",
+      "Garantía de fábrica con soporte técnico"
+    ]
   }
 ];
 
